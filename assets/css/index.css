@@ -28,7 +28,7 @@ body, html {
 }
 
 .head p {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   opacity: .75;
 }
 
@@ -36,81 +36,15 @@ body, html {
   margin: 2rem 0;
 }
 
-#aaa {
-  height: 500px;
-  background-image: url("../img/WhatsApp-Image-2018-11-18-at-20.57.30.jpeg");
-  background-size: cover;
-  background-position: center center;
-  background-color: #111;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
 #aaa .container {
   width: 100%;
-  text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 
-#aaa .container .items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+#aaa .container img {
   width: 100%;
-  margin-top: 5rem;
-}
-
-#aaa .container .items .item {
-  height: 120px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-#aaa .container .items .item .inner {
-  color: #313131;
-  text-align: center;
-}
-
-#aaa .container .items .item .inner .count {
-  font-weight: bold;
-  font-size: 40px;
-  margin-bottom: 1rem;
-}
-
-#aaa .container .items .item .devider {
-  width: 100px;
-  height: 0;
-  border-top: 3px solid #3b57ac;
-  margin: 0 auto;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #navbar {

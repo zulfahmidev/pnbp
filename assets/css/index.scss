@@ -22,7 +22,7 @@ body,html {
         text-transform: uppercase;
     }
     p {
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
         opacity: .75;
     }
 }
@@ -31,51 +31,13 @@ body,html {
     margin: 2rem 0;
 }
 #aaa {
-    height: 500px;
-    background-image: url('../img/WhatsApp-Image-2018-11-18-at-20.57.30.jpeg');
-    background-size: cover;
-    background-position: center center;
-    background-color: #111;
-    display: flex;
-    align-items: center;
-    // margin: 0 10%;
     .container {
         width: 100%;
 
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    
-        .items {
-            display: flex;
-            justify-content: space-around;
+        img {
             width: 100%;
-            margin-top: 5rem;
-    
-            .item {
-                height: 120px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                flex-direction: column;
-                .inner {
-                    color: #313131;
-                    text-align: center;
-                    .count {
-                        font-weight: bold;
-                        font-size: 40px;
-                        margin-bottom: 1rem;
-                    }
-                }
-                .devider {
-                    width: 100px;
-                    height: 0;
-                    border-top: 3px solid rgb(59, 87, 172);
-                    margin: 0 auto;
-                }
-            }
+            height: 400px;
+            object-fit: cover;
         }
     }
 }

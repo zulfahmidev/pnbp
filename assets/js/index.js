@@ -29,6 +29,10 @@ function toggle(selector, bool = false, ev, textHide = '', textShow = '', displa
     }
 }
 
+function numberFormat(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function rand() {
     return Math.floor(Math.random() * 80);
 }
@@ -124,6 +128,13 @@ let vue = new Vue({
                     }
                 }
             });
+        },
+        total(arr, index) {
+            let total = 0;
+            arr.forEach(el => {
+                total += el[index];
+            });
+            return total;
         }
     },
     async created() {

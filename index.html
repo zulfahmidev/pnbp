@@ -104,15 +104,48 @@
                 <div class="head">
                     <h4>{{ webData.st_title }}</h4>
                     <p>{{ webData.st_subtitle }}</p>
+                    <div class="toggle-chart btn btn-primary" onclick="toggle('#data', false, this, 'Tampilkan Data', 'Sembunyikan Data');">Tampilkan Data</div>
                 </div>
-                <div class="items">
-                    <div class="item" v-for="(d,i) in webData.st_data" :key="i">
-                        <div class="devider"></div>
-                        <div class="inner">
-                            <div class="count">{{ d.count }}</div>
-                            <p>{{ d.desc }}</p>
+                <div id="data" style="display: none;">
+                    <img src="assets/img/WhatsApp-Image-2018-11-18-at-20.57.30.jpeg" alt="Peta Indonesia">
+                    <div class="row" style="width: 100%;">
+                        <div class="col-lg-6">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="col">PROVINSI</th>
+                                        <th class="col" style="text-align: right;">REALISASI (Rupiah)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(d,i) in webData.st_data" :key="i" v-if="i < 18">
+                                        <td>{{ d.provinsi }}</td>
+                                        <td style="text-align: right;">{{ d.realisasi }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="devider"></div>
+                        <div class="col-lg-6">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="col">PROVINSI</th>
+                                        <th class="col" style="text-align: right;">REALISASI (Rupiah)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(d,i) in webData.st_data" :key="i" v-if="i >= 18">
+                                        <td>{{ d.provinsi }}</td>
+                                        <td style="text-align: right;">{{ d.realisasi }}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2" style="text-align: right;">Total: {{ total(webData.st_data,'realisasi') }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,7 +156,7 @@
                 <div class="head">
                     <h4>{{ webData.c1_title }}</h4>
                     <p>{{ webData.c1_subtitle }}</p>
-                    <div class="toggle-chart btn btn-primary" onclick="toggle('#data1', false, this, 'Tampilkan Grafik', 'Sembunyikan Grafik');">Tampilkan Grafik</div>
+                    <div class="toggle-chart btn btn-primary" onclick="toggle('#data1', false, this, 'Tampilkan Data', 'Sembunyikan Data');">Tampilkan Data</div>
                 </div>
                 <div id="data1" style="display: none;">
                     <div class="chart">
@@ -145,6 +178,12 @@
                                 <td style="text-align: right;">{{ d.realisasi }}</td>
                               </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" style="text-align: right;">Total: {{ total(webData.c1_data,'target') }}</td>
+                                    <td style="text-align: right;">Total: {{ total(webData.c1_data,'realisasi') }}</td>
+                                </tr>
+                            </tfoot>
                           </table>
                     </div>
                 </div>
@@ -156,7 +195,7 @@
                 <div class="head">
                     <h4>{{ webData.c2_title }}</h4>
                     <p>{{ webData.c2_subtitle }}</p>
-                    <div class="toggle-chart btn btn-primary" onclick="toggle('#data2', false, this, 'Tampilkan Grafik', 'Sembunyikan Grafik')">Tampilkan Grafik</div>
+                    <div class="toggle-chart btn btn-primary" onclick="toggle('#data2', false, this, 'Tampilkan Data', 'Sembunyikan Data')">Tampilkan Data</div>
                 </div>
                 <div id="data2" style="display: none;">
                     <div class="chart">
@@ -178,6 +217,12 @@
                                 <td style="text-align: right;">{{ d.realisasi }}</td>
                               </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" style="text-align: right;">Total: {{ total(webData.c2_data,'target') }}</td>
+                                    <td style="text-align: right;">Total: {{ total(webData.c2_data,'realisasi') }}</td>
+                                </tr>
+                            </tfoot>
                           </table>
                     </div>
                 </div>
@@ -202,6 +247,7 @@
                 </div>
             </div>
         </div>
+
         <div id="footer">
             <div class="container">
                 <div class="row py-5">
