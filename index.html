@@ -133,29 +133,16 @@
                         <table class="table table-striped">
                             <thead class="thead-dark">
                               <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">JENIS PNBP</th>
+                                <th style="text-align: right;" scope="col">Target (Rupiah)</th>
+                                <th style="text-align: right;" scope="col">Realisasi (Rupiah)</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                              <tr v-for="(d,i) in webData.c1_data" :key="i">
+                                <th>{{ d.label }}</th>
+                                <td style="text-align: right;">{{ d.target }}</td>
+                                <td style="text-align: right;">{{ d.realisasi }}</td>
                               </tr>
                             </tbody>
                           </table>
@@ -179,29 +166,16 @@
                         <table class="table table-striped">
                             <thead class="thead-dark">
                               <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">URAIAN AKUN</th>
+                                <th style="text-align: right;" scope="col">Target (Rupiah)</th>
+                                <th style="text-align: right;" scope="col">Realisasi (Rupiah)</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                              <tr v-for="(d,i) in webData.c2_data" :key="i">
+                                <th>{{ d.label }}</th>
+                                <td style="text-align: right;">{{ d.target }}</td>
+                                <td style="text-align: right;">{{ d.realisasi }}</td>
                               </tr>
                             </tbody>
                           </table>
