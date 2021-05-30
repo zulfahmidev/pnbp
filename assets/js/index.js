@@ -63,9 +63,9 @@ let vue = new Vue({
                     }
                 ]
             }
-            for (const y in this.c1_data) {
-                if (Object.hasOwnProperty.call(this.c1_data, y)) {
-                    const element = this.c1_data[y];
+            for (const y in this.webData.c1_data) {
+                if (Object.hasOwnProperty.call(this.webData.c1_data, y)) {
+                    const element = this.webData.c1_data[y];
                     data.labels.push(element.label);
                     data.datasets[0].data.push(element.target);
                     data.datasets[1].data.push(element.realisasi);
@@ -102,9 +102,9 @@ let vue = new Vue({
                     }
                 ]
             }
-            for (const y in this.c2_data) {
-                if (Object.hasOwnProperty.call(this.c2_data, y)) {
-                    const element = this.c2_data[y];
+            for (const y in this.webData.c2_data) {
+                if (Object.hasOwnProperty.call(this.webData.c2_data, y)) {
+                    const element = this.webData.c2_data[y];
                     data.labels.push(element.label);
                     data.datasets[0].data.push(element.target);
                     data.datasets[1].data.push(element.realisasi);
@@ -127,16 +127,15 @@ let vue = new Vue({
         }
     },
     async created() {
-        this.webData = await $.getJSON("data.json", function(json) {
+        this.webData = await $.getJSON("data.json", json => {
             data = json;
+            setTimeout(() => {
+                this.showChart1();
+                this.showChart2();
+            }, 20)
         });
-        console.log(this.webData)
     },
     mounted() {
 
-        setTimeout(() => {
-            this.showChart1();
-            this.showChart2();
-        }, 20)
     }
 });
