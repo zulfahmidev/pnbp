@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPAS ~ BERANDA</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body>
+
+    <div id="app">
+
+        <nav id="navbar">
+            <div class="contact">
+                <div class="container">
+                    <div><i class="fa fa-envelope fa-fw" style="margin-right: 0.5rem;"></i> {{ webData.email }}</div>
+                    <div><i class="fa fa-phone fa-fw" style="margin-right: 0.5rem;"></i> {{ webData.phone }}</div>
+                </div>
+            </div>
+            <div class="navbar navbar-expand-lg navbar-light shadow">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <img src="assets/img/logo.png" alt="logo">
+                        <span>E-PNBP</span>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbar-nav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item" v-for="(nav, i) in webData.navs" :key="i"><a class="nav-link" :href="nav.url">{{ nav.text }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    
+        <div id="header">
+            <div class="item" :style="`background-image: url('${webData.h_image}');`">
+                <div class="text">
+                    <div class="container">
+                        <h1>{{ webData.h_title }}</h1>
+                        <p>{{ webData.h_subtitle }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="about">
+            <div class="container">
+                <div class="row main">
+                    <div class="col-lg-6">
+                        <h4>TENTANG KAMI</h4>
+                        <h2>{{ webData.tk_title }}</h2>
+                        <p>{{ webData.tk_description }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="image">
+                            <img :src="webData.tk_image" alt="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="row photos">
+                    <div class="col-lg-3">
+                        <div class="image">
+                            <img :src="webData.tk_avatars[0].image" alt="Image1">
+                        </div>
+                        <div class="name">{{ webData.tk_avatars[0].name }}</div>
+                        <div class="desc">{{ webData.tk_avatars[0].desc }}</div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="image">
+                            <img :src="webData.tk_avatars[1].image" alt="Image1">
+                        </div>
+                        <div class="name">{{ webData.tk_avatars[1].name }}</div>
+                        <div class="desc">{{ webData.tk_avatars[1].desc }}</div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="image">
+                            <img :src="webData.tk_avatars[2].image" alt="Image1">
+                        </div>
+                        <div class="name">{{ webData.tk_avatars[2].name }}</div>
+                        <div class="desc">{{ webData.tk_avatars[2].desc }}</div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="image">
+                            <img :src="webData.tk_avatars[3].image" alt="Image1">e1">
+                        </div>
+                        <div class="name">{{ webData.tk_avatars[3].name }}</div>
+                        <div class="desc">{{ webData.tk_avatars[3].desc }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="aaa">
+            <div class="container">
+                <div class="head">
+                    <h4>{{ webData.st_title }}</h4>
+                    <p>{{ webData.st_subtitle }}</p>
+                </div>
+                <div class="items">
+                    <div class="item" v-for="(d,i) in webData.st_data" :key="i">
+                        <div class="devider"></div>
+                        <div class="inner">
+                            <div class="count">{{ d.count }}</div>
+                            <p>{{ d.desc }}</p>
+                        </div>
+                        <div class="devider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="chartSection">
+            <div class="container">
+                <div class="head">
+                    <h4>{{ webData.c1_title }}</h4>
+                    <p>{{ webData.c1_subtitle }}</p>
+                    <div class="toggle-chart btn btn-primary" onclick="toggle('#data1', false, this, 'Tampilkan Grafik', 'Sembunyikan Grafik');">Tampilkan Grafik</div>
+                </div>
+                <div id="data1" style="display: none;">
+                    <div class="chart">
+                        <canvas id="chart1" height="100"></canvas>
+                    </div>
+                    <div class="mt-4">
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="chartSection">
+            <div class="container">
+                <div class="head">
+                    <h4>{{ webData.c2_title }}</h4>
+                    <p>{{ webData.c2_subtitle }}</p>
+                    <div class="toggle-chart btn btn-primary" onclick="toggle('#data2', false, this, 'Tampilkan Grafik', 'Sembunyikan Grafik')">Tampilkan Grafik</div>
+                </div>
+                <div id="data2" style="display: none;">
+                    <div class="chart">
+                        <canvas id="chart2" height="100"></canvas>
+                    </div>
+                    <div class="mt-4">
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="product">
+            <div class="container">
+                <div class="head">
+                    <h4>{{ webData.ap_title }}</h4>
+                    <p>{{ webData.ap_subtitle }}</p>
+                </div>
+                <div class="row items">
+                    <div class="col-lg-4" v-for="(item,i) in webData.ap_items" :key="i">
+                        <a :href="item.href" class="item">
+                            <div class="logo">
+                                <img :src="item.image" :alt="item.desc">
+                            </div>
+                            <div class="title">{{ item.desc }}</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <div class="row py-5">
+                    <div class="col-lg-4 centerY">
+                        <div class="logo">
+                            <img src="assets/img/logo.png" alt="logo">
+                            <div class="text">
+                                <h2>E-PNBP</h2>
+                                <p>{{ webData.ft_slogan }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4>Navigasi</h4>
+                        <ul>
+                            <li v-for="(nav, i) in webData.navs" :key="i"><a :href="nav.url">{{ nav.text }}</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4>Kontak Kami</h4>
+                        <ul>
+                            <li><i class="fa fa-map-pin fa-fw"></i> <span> {{ webData.address }}</span></li>
+                            <li><i class="fa fa-phone fa-fw"></i> <span>{{ webData.phone }}</span></li>
+                            <li><i class="fa fa-envelope fa-fw"></i> <span>{{ webData.email }}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copy">Copyright&copy; 2021 E-PNBP Mahkamah Agung. Developed by <a href="https://zulfahmidev.github.io" target="_blank" rel="noopener noreferrer">Zulfahmidev</a>.</div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

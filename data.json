@@ -1,0 +1,111 @@
+{
+    "navs": [
+        {"text": "Beranda", "url": "http://localhost/pnbp#navbar"},
+        {"text": "Tentang Kami", "url": "http://localhost/pnbp#about"},
+        {"text": "Aplikasi", "url": "http://localhost/pnbp#product"},
+        {"text": "Jadwal Kegiatan", "url": "http://localhost/pnbp"}
+    ],
+    "email": "lorembylorem@gmail.com",
+    "phone": "+62 (812) 3456 7890",
+    "address": "Jl. Lorem, ipsum dolor no. 123",
+    "h_image": "http://localhost/pnbp/assets/img/Picture2.png",
+    "h_title": "PNBP MAHKAMAH AGUNG",
+    "h_subtitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi voluptate voluptatum vel reiciendis nemo molestias!",
+    "tk_title": "E-PNBP Mahkamah Agung",
+    "tk_description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur optio quaerat sint reprehenderit cupiditate quasi quibusdam a beatae, in praesentium, tempora corrupti quam iure. Quaerat, similique vero placeat adipisci sit incidunt voluptates aliquid, saepe dolorem error, tenetur est quo in?",
+    "tk_image": "http://localhost/pnbp/assets/img/tk_image.png",
+    "tk_avatars": [
+        {
+            "image": "http://localhost/pnbp/assets/img/avatar/1.png",
+            "name": "The Name 1",
+            "desc": "Lorem ipsum dolor"
+        },
+        {
+            "image": "http://localhost/pnbp/assets/img/avatar/2.png",
+            "name": "The Name 2",
+            "desc": "Lorem ipsum dolor"
+        },
+        {
+            "image":"http://localhost/pnbp/assets/img/avatar/3.png",
+            "name": "The Name 3",
+            "desc": "Lorem ipsum dolor"
+        },
+        {
+            "image": "http://localhost/pnbp/assets/img/avatar/4.png",
+            "name": "The Name 4",
+            "desc": "Lorem ipsum dolor"
+        }
+    ],
+    "st_title": "SECTION AFTER ABOUT",
+    "st_subtitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, neque.",
+    "st_data": [
+        {"count": 30, "desc": "The Item"},
+        {"count": 30, "desc": "The Item"},
+        {"count": 40, "desc": "The Item"},
+        {"count": 30, "desc": "The Item"}
+    ],
+    "c1_title": "Chart One",
+    "c1_subtitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, libero!",
+    "c1_data": [
+        {"label": 2019,"target": 69158198287, "realisasi": 80615001994},
+        {"label": 2020,"target": 75439089309, "realisasi": 84173439409},
+        {"label": 2021,"target": 73368085152, "realisasi": 37438587304}
+    ],
+    "c2_title": "Chart Two",
+    "c2_subtitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, libero!",
+    "c2_data": [
+        {"label": 2019,"target": 69158198287, "realisasi": 80615001994},
+        {"label": 2020,"target": 75439089309, "realisasi": 84173439409},
+        {"label": 2021,"target": 73368085152, "realisasi": 37438587304}
+    ],
+    "ap_title": "APLIKASI",
+    "ap_subtitle": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo, dicta?",
+    "ap_items": [
+        {
+            "image": "http://localhost/pnbp/assets/img/logoMa.png",
+            "desc": "Mahkamah Agung",
+            "href": "https://www.mahkamahagung.go.id"
+        },
+        {
+            "image": "http://localhost/pnbp/assets/img/logo_sipas.png",
+            "desc": "SIPAS",
+            "href": "http://localhost/sipas/"
+        },
+        {
+            "image": "",
+            "desc": "TAKON",
+            "href": "https://www.takon.birokeuangan.com"
+        },
+        {
+            "image": "",
+            "desc": "SIMARI",
+            "href": "https://www.simari.mahkamah agung.go.id"
+        },
+        {
+            "image": "http://localhost/pnbp/assets/img/pajak_small.png",
+            "desc": "SIMPONI",
+            "href": "https://simponi.kemenkeu.go.id/"
+        },
+        {
+            "image": "",
+            "desc": "OM-SPAN",
+            "href": "https://spanint.kemenkeu.go.id/"
+        },
+        {
+            "image": "http://localhost/pnbp/assets/img/logo-dja.png",
+            "desc": "TPNBP",
+            "href": "http://www.anggaran.kemenkeu.go.id/"
+        },
+        {
+            "image": "",
+            "desc": "NOMINATIF",
+            "href": "https://drive.google.com/file/d/1Edj0fxEbUoLunqXzyPdWgX6lrwYJrBc4/view?usp=sharing"
+        },
+        {
+            "image": "",
+            "desc": "RAP PNBP",
+            "href": "https://drive.google.com/file/d/1LMJDluMTIuchFpe65kFZdsQ6iBzUC5hE/view?usp=sharing"
+        }
+    ],
+    "ft_slogan": "Lorem ipsum dolor sit amet."
+}
