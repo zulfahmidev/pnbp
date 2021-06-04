@@ -2,6 +2,8 @@
 
 require('functions.php');
 
+dasarPage();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,81 +23,58 @@ require('functions.php');
 </head>
 <body class="bg-primary">
 
-    <div id="app">
-        <div class="container my-5 p-5 bg-white rounded shadow-lg">
+    <div class="container my-5 p-5 bg-white rounded shadow-lg">
 
-            <ul class="nav nav-tabs mb-3">
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.php">Dasar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="header.php">Header</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tentang.php">Tentang Kami</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stats1.php">Statistik 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stats2.php">Statistik 2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stats3.php">Statistik 3</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="produk.php">Produk</a>
-                </li>
-            </ul>
+        <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+                <a class="nav-link active" href="index.php">Dasar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="header.php">Header</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tentang.php">Tentang Kami</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stats1.php">Statistik 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stats2.php">Statistik 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stats3.php">Statistik 3</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="produk.php">Produk</a>
+            </li>
+        </ul>
 
-            <div class="row" id="header">
-                <div class="col-lg-6">
-                    <h4>Dasar</h4>
-                    <form action="" method="post" ref="form">
-                        <input type="hidden" name="data" ref="data">
-                    </form>
+        <div class="row" id="header">
+            <div class="col-lg-6">
+                <h4>Dasar</h4>
+                <form action="" method="post" ref="form">
+                    <input type="hidden" name="options" value="{}">
                     <div class="form-group mb-3">
                         <label for="email">Email: </label>
-                        <input type="text" class="form-control" v-model="webData.email" placeholder="Type here..." id="email">
+                        <input type="text" class="form-control" value="<?= getData()['email'] ?>" name="email" placeholder="Type here..." id="email">
                     </div>
                     <div class="form-group mb-3">
                         <label for="alamat">Alamat: </label>
-                        <input type="text" class="form-control" v-model="webData.address" placeholder="Type here..." id="alamat">
+                        <input type="text" class="form-control" name="address" value="<?= getData()['address'] ?>" placeholder="Type here..." id="alamat">
                     </div>
                     <div class="form-group mb-3">
                         <label for="phone">Phone: </label>
-                        <input type="text" class="form-control" v-model="webData.phone" placeholder="Type here..." id="phone">
+                        <input type="text" class="form-control" value="<?= getData()['phone'] ?>" name="phone" placeholder="Type here..." id="phone">
                     </div>
                     <div class="form-group mb-3">
                         <label for="ft_sloag">Slogan: </label>
-                        <input type="text" class="form-control" v-model="webData.ft_slogan" placeholder="Type here..." id="ft_sloag">
+                        <input type="text" class="form-control" value="<?= getData()['ft_slogan'] ?>" name="ft_slogan" placeholder="Type here..." id="ft_sloag">
                     </div>
-                    <button class="btn btn-primary" @click="save">Simpan Perubahan</button>
-                </div>
+                    <button class="btn btn-primary" name="save">Simpan Perubahan</button>
+                </form>
             </div>
-            
         </div>
+        
     </div>
-    
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                webData: {},
-            },
-            methods: {
-                save() {
-                    let data = JSON.stringify(this.webData);
-                    this.$refs.data.value = data;
-                    this.$refs.form.submit();
-                }
-            },
-            mounted() {
-                $.getJSON('../data.json', (data) => {
-                    this.webData = data;
-                });
-            }
-        })
-    </script>
 </body>
 </html>

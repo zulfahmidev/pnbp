@@ -2,6 +2,8 @@
 
 require('functions.php');
 
+tentangPage();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,76 +25,52 @@ require('functions.php');
 </head>
 <body class="bg-primary">
 
-    <div id="app">
-        <div class="container my-5 p-5 bg-white rounded shadow-lg">
-            <ul class="nav nav-tabs mb-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php">Dasar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="header.php">Header</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="tentang.php">Tentang Kami</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stats1.php">Statistik 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stats2.php">Statistik 2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stats3.php">Statistik 3</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="produk.php">Produk</a>
-                </li>
-            </ul>
-            <div class="row" id="header">
-                <div class="col-lg-6">
-                    <h4>Tentang Kami</h4>
-                    <form action="" method="post" ref="form" enctype="multipart/form-data">
-                        <input type="hidden" name="data" ref="data">
-                        <div class="form-group mb-3">
-                            <label for="tk_image">Gambar: </label>
-                            <input type="hidden" ref="image_name" name="image_name">
-                            <input type="file" name="image" class="form-control" id="tk_image">
-                        </div>
-                    </form>
+    <div class="container my-5 p-5 bg-white rounded shadow-lg">
+        <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Dasar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="header.php">Header</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="tentang.php">Tentang Kami</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stats1.php">Statistik 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stats2.php">Statistik 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stats3.php">Statistik 3</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="produk.php">Produk</a>
+            </li>
+        </ul>
+        <div class="row" id="header">
+            <div class="col-lg-6">
+                <h4>Tentang Kami</h4>
+                <form action="" method="post" ref="form" enctype="multipart/form-data">
+                    <input type="hidden" name="options" value="{}">
+                    <div class="form-group mb-3">
+                        <label for="tk_image">Gambar: </label>
+                        <input type="file" name="tk_image" class="form-control" id="tk_image">
+                    </div>
                     <div class="form-group mb-3">
                         <label for="tk_title">Title: </label>
-                        <input type="text" class="form-control" v-model="webData.tk_title" placeholder="Type here..." id="tk_title">
+                        <input type="text" class="form-control" value="<?= getData()['tk_title'] ?>" name="tk_title" placeholder="Type here..." id="tk_title">
                     </div>
                     <div class="form-group mb-3">
                         <label for="tk_description">Deskripsi: </label>
-                        <textarea id="tk_description" class="form-control" v-model="webData.tk_description" placeholder="Type here..." cols="30" rows="10"></textarea>
+                        <textarea id="tk_description" class="form-control" name="tk_description" placeholder="Type here..." cols="30" rows="10"><?= getData()['tk_description'] ?></textarea>
                     </div>
-                    <button class="btn btn-primary" @click="save">Simpan Perubahan</button>
-                </div>
+                    <button class="btn btn-primary" name="save">Simpan Perubahan</button>
+                </form>
             </div>
         </div>
     </div>
     
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                webData: {},
-            },
-            methods: {
-                save() {
-                    this.$refs.image_name.value = 'tk_image';
-                    let data = JSON.stringify(this.webData);
-                    this.$refs.data.value = data;
-                    this.$refs.form.submit();
-                }
-            },
-            mounted() {
-                $.getJSON('../data.json', (data) => {
-                    this.webData = data;
-                });
-            }
-        })
-    </script>
 </body>
 </html>

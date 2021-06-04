@@ -2,6 +2,8 @@
 
 require('functions.php');
 
+headerPage();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,44 +55,21 @@ require('functions.php');
                         <input type="hidden" name="data" ref="data">
                         <div class="form-group mb-3">
                             <label for="h_image">Gambar: </label>
-                            <input type="hidden" ref="image_name" name="image_name">
-                            <input type="file" ref="image" name="image" class="form-control" id="h_image">
+                            <input type="file" name="h_image" class="form-control" id="h_image">
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="h_title">Title: </label>
+                            <input type="text" value="<?= getData()['h_title'] ?>" name="h_title" class="form-control" placeholder="Type here..." id="h_title">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="h_subtitle">Subitle: </label>
+                            <input type="text" value="<?= getData()['h_subtitle'] ?>" name="h_subtitle" class="form-control" placeholder="Type here..." id="h_subtitle">
+                        </div>
+                        <button class="btn btn-primary" name="save">Simpan Perubahan</button>
                     </form>
-                    <div class="form-group mb-3">
-                        <label for="h_title">Title: </label>
-                        <input type="text" v-model="webData.h_title" class="form-control" placeholder="Type here..." id="h_title">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="h_subtitle">Subitle: </label>
-                        <input type="text" v-model="webData.h_subtitle" class="form-control" placeholder="Type here..." id="h_subtitle">
-                    </div>
-                    <button class="btn btn-primary" @click="save">Simpan Perubahan</button>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                webData: {},
-            },
-            methods: {
-                save() {
-                    this.$refs.image_name.value = 'h_image';
-                    let data = JSON.stringify(this.webData);
-                    this.$refs.data.value = data;
-                    this.$refs.form.submit();
-                },
-            },
-            mounted() {
-                $.getJSON('../data.json', (data) => {
-                    this.webData = data;
-                });
-            }
-        })
-    </script>
 </body>
 </html>
