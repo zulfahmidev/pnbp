@@ -184,7 +184,7 @@
                                     <td style="text-align: right;">Total: {{ total(webData.c1_data,'realisasi') }}</td>
                                 </tr>
                             </tfoot>
-                          </table>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -237,11 +237,11 @@
                 </div>
                 <div class="row items">
                     <div class="col-lg-4" v-for="(item,i) in webData.ap_items" :key="i">
-                        <a :href="item.href" class="item">
+                        <a :href="item.url" class="item">
                             <div class="logo">
-                                <img :src="item.image" :alt="item.desc">
+                                <img :src="item.image" :alt="item.name">
                             </div>
-                            <div class="title">{{ item.desc }}</div>
+                            <div class="title">{{ item.name }}</div>
                         </a>
                     </div>
                 </div>
