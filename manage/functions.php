@@ -1,6 +1,8 @@
 <?php
 
 require_once '../vendor/autoload.php';
+session_start();
+date_default_timezone_set('Asia/Jakarta');
 $filename = '../data.json';
 
 function getData() {
@@ -14,6 +16,9 @@ function saveData($data) {
 }
 
 function dasarPage() {
+    if (!auth()) {
+        header('location: login.php');
+    }
     if (isset($_POST['save'])) {
 
         $data = getData();
@@ -22,14 +27,13 @@ function dasarPage() {
         $data['address'] = $_POST['address'];
         $data['ft_slogan'] = $_POST['ft_slogan'];
         saveData($data);
-
     }
 }
 
-function getImgUploader() {
+function getImgUploader($dir = 'assets/img') {
     $image = new Bulletproof\Image($_FILES);
     $image->setMime(array('png', 'jpg', 'jpeg'))
-        ->setLocation('../assets/img')
+        ->setLocation('../'.$dir)
         ->setSize(5000, 8388608)
         ->setDimension(10000,10000);                
 
@@ -37,6 +41,9 @@ function getImgUploader() {
 }
 
 function headerPage() {
+    if (!auth()) {
+        header('location: login.php');
+    }
     if (isset($_POST['save'])) {
 
         $data = getData();
@@ -67,6 +74,9 @@ function headerPage() {
 }
 
 function tentangPage() {
+    if (!auth()) {
+        header('location: login.php');
+    }
     if (isset($_POST['save'])) {
 
         $data = getData();
@@ -94,9 +104,15 @@ function tentangPage() {
         saveData($data);
 
     }
+    tambahAvatars();
+    ubahAvatars();
+    hapus();
 }
 
 function stats1Page() {
+    if (!auth()) {
+        header('location: login.php');
+    }
     if (isset($_POST['save'])) {
 
         $data = getData();
@@ -111,6 +127,9 @@ function stats1Page() {
 }
 
 function stats2Page() {
+    if (!auth()) {
+        header('location: login.php');
+    }
     if (isset($_POST['save'])) {
 
         $data = getData();
@@ -125,6 +144,9 @@ function stats2Page() {
 }
 
 function stats3Page() {
+    if (!auth()) {
+        header('location: login.php');
+    }
     if (isset($_POST['save'])) {
 
         $data = getData();
@@ -140,6 +162,9 @@ function stats3Page() {
 
 
 function productPage() {
+    if (!auth()) {
+        header('location: login.php');
+    }
     if (isset($_POST['save'])) {
 
         $data = getData();
@@ -185,7 +210,7 @@ function tambahProduct() {
         if (isset($_FILES['image'])) {
             if ($_FILES['image']['name'] != '') {
 
-                $uploader = getImgUploader();
+                $uploader = getImgUploader('assets/img/logo');
                 if ($uploader['image']) {
                     $upload = $uploader->upload();
                     if ($upload) {
@@ -202,12 +227,11 @@ function tambahProduct() {
         saveData($data);
     }
 }
-
-function ubahProduct() {
-    if (isset($_POST['ubah'])) {
+function tambahAvatars() {
+    if (isset($_POST['tambah'])) {
         $data = getData();
         $data2 = [];
-        $fields = ['name', 'url'];
+        $fields = ['name', 'desc'];
         foreach ($fields as $field) {
             $data2[$field] = $_POST[$field];
         }
@@ -215,11 +239,11 @@ function ubahProduct() {
         if (isset($_FILES['image'])) {
             if ($_FILES['image']['name'] != '') {
 
-                $uploader = getImgUploader();
+                $uploader = getImgUploader('assets/img/avatars');
                 if ($uploader['image']) {
                     $upload = $uploader->upload();
                     if ($upload) {
-                        $data2['image'] = 'assets/img/logo/'.$uploader->getName().'.'.$uploader->getMime();
+                        $data2['image'] = 'assets/img/avatars/'.$uploader->getName().'.'.$uploader->getMime();
                     }else {
 
                     }
@@ -228,7 +252,74 @@ function ubahProduct() {
     
         }
 
-        $data['ap_items'][$_POST['number']] = $data2;
+        $data['tk_avatars'][] = $data2;
+        saveData($data);
+    }
+}
+
+function ubahProduct() {
+    if (isset($_POST['ubah'])) {
+        $data = getData();
+        $data2 = [];
+        $fields = ['name', 'url'];
+        foreach ($fields as $field) {
+            $data['ap_items'][$_POST['number']][$field] = $_POST[$field];
+        }
+
+        if (isset($_FILES['image'])) {
+            if ($_FILES['image']['name'] != '') {
+
+                $uploader = getImgUploader('assets/img/logo');
+                if ($uploader['image']) {
+                    $upload = $uploader->upload();
+                    if ($upload) {
+                        if (file_exists(__DIR__.'/../'.$data['ap_items'][$_POST['number']]['image'])) {
+                            unlink(__DIR__.'/../'.$data['ap_items'][$_POST['number']]['image']);
+                        }
+                        $data['ap_items'][$_POST['number']]['image'] = 'assets/img/logo/'.$uploader->getName().'.'.$uploader->getMime();
+                    }else {
+
+                    }
+                }
+            }   
+    
+        }
+
+        saveData($data);
+    }
+}
+
+
+function ubahAvatars() {
+    if (isset($_POST['ubah'])) {
+        $data = getData();
+        $fields = ['name', 'desc'];
+        foreach ($fields as $field) {
+            $data['tk_avatars'][$_POST['number']][$field] = $_POST[$field];
+        }
+
+        if (isset($_FILES['image'])) {
+            if ($_FILES['image']['name'] != '') {
+
+                // var_dump($_FILES['image']['name']);
+                // die;
+
+                $uploader = getImgUploader('assets/img/avatars');
+                if ($uploader['image']) {
+                    $upload = $uploader->upload();
+                    if ($upload) {
+                        if (file_exists(__DIR__.'/../'.$data['tk_avatars'][$_POST['number']]['image'])) {
+                            unlink(__DIR__.'/../'.$data['tk_avatars'][$_POST['number']]['image']);
+                        }
+                        $data['tk_avatars'][$_POST['number']]['image'] = 'assets/img/avatars/'.$uploader->getName().'.'.$uploader->getMime();
+                    }else {
+
+                    }
+                }
+            }   
+    
+        }
+
         saveData($data);
     }
 }
@@ -251,4 +342,74 @@ function total($index, $field) {
         $total += $d[$field];
     }
     return $total;
+}
+
+function login($username, $password) {
+    if (($token = attempt($username, $password))) {
+        $_SESSION['login_token'] = $token;
+        return true;
+    }
+    return false;
+}
+
+function logout() {
+    if (isset($_SESSION['login_token'])) {
+        unset($_SESSION['login_token']);
+        return true;
+    }
+    return false;
+}
+
+function auth() {
+    if (isset($_SESSION['login_token'])) {
+        $time = dencToken($_SESSION['login_token']);
+
+        return (int)$time >= time();
+    }
+    return false;
+}
+
+function attempt($username, $password) {
+
+    // Algorithm
+    $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
+    $months = ['januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember'];
+    $user = password_hash($days[date('N')-1],2);
+    $pass = password_hash('@_Z1&'.date('j').$months[date('n')-1].date('y').'%TD', 1);
+    $password = '@_Z1&'.$password.'%TD';
+    if (password_verify($username, $user) && password_verify($password, $pass)) {
+        return encToken(time()+(60*60));
+    }
+    return false;
+}
+
+function encToken($number) {
+    $arr = str_split($number);
+    if ((int)end($arr)%2==0) $arr = array_reverse($arr);
+    $keys = ['Z','1','L','0','A','D','M','C','%','@'];
+    $token = '';
+    foreach ($arr as $t) {
+        $token .= $keys[$t];
+    }
+    return $token;
+}
+
+function dencToken($token) {
+    $arr = str_split($token);
+    $keys = ['Z','1','L','0','A','D','M','C','%','@'];
+    $normal = '';
+    foreach ($arr as $t) {
+        foreach ($keys as $i => $k) {
+            // echo $k . ' ' . (string)$t .'<br>';
+            // echo $k = $t;
+            if ($k == $t) $normal .= "$i";
+        }
+    }
+    $n = str_split($normal);
+    if ((int)end($n)%2==0) $arr = array_reverse($arr);
+    return $normal;
+}
+
+if (isset($_POST['logout'])) {
+    logout();
 }

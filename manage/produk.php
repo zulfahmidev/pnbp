@@ -12,12 +12,11 @@ productPage();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 </head>
@@ -45,6 +44,12 @@ productPage();
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="produk.php">Produk</a>
+            </li>
+            <li class="nav-item">
+                <form action="" method="post" id="logout">
+                    <input type="hidden" name="logout">
+                </form>
+                <a class="nav-link" onclick="event.preventDefault();document.querySelector('#logout').submit()" href="produk.php">Logout</a>
             </li>
         </ul>
         <div class="row">
@@ -81,6 +86,7 @@ productPage();
             </thead>
             <tbody>
                 <?php foreach (getData()['ap_items'] as $i => $v) : ?>
+
                 <tr>
                     <th scope="row"><?= $i+1; ?></th>
                     <td><?= $v['name']; ?></td>
@@ -128,7 +134,6 @@ productPage();
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <button class="btn btn-primary" @click="save">Simpan Perubahan</button>
     </div>
     <div class="modal fade" id="modalTambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTambah" aria-hidden="true">
         <div class="modal-dialog">

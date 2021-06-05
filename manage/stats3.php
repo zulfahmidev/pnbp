@@ -40,6 +40,12 @@ stats3Page();
                 <li class="nav-item">
                     <a class="nav-link" href="produk.php">Produk</a>
                 </li>
+                <li class="nav-item">
+                    <form action="" method="post" id="logout">
+                        <input type="hidden" name="logout">
+                    </form>
+                    <a class="nav-link" onclick="event.preventDefault();document.querySelector('#logout').submit()" href="produk.php">Logout</a>
+                </li>
             </ul>
             <div class="row" id="header">
                 <div class="col-lg-6">

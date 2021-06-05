@@ -131,13 +131,18 @@ let vue = new Vue({
         },
         total(arr, index) {
             let total = 0;
-            arr.forEach(el => {
-                total += el[index];
-            });
+            for (const key in arr) {
+                if (Object.hasOwnProperty.call(arr, key)) {
+                    const element = arr[key][index];
+                    total += parseInt(element);
+                }
+            }
             return total;
         }
     },
-    async created() {
+    created() {
+    },
+    async mounted() {
         this.webData = await $.getJSON("data.json", json => {
             data = json;
             setTimeout(() => {
@@ -145,8 +150,6 @@ let vue = new Vue({
                 this.showChart2();
             }, 20)
         });
-    },
-    mounted() {
 
     }
 });
